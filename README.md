@@ -15,7 +15,7 @@
 
 ## Constraints
 - The Sudoku only has one possible solution.
-- The minimum amount of clues provided the constraint above is 17, as mathematically proven by [McGuire et al](arxiv.org/pdf/1201.0749).
+- The minimum amount of clues provided the constraint above is 17, as mathematically proven by [McGuire et al](https://arxiv.org/abs/1201.0749).
 - The maximum amount of clues in this implementation is arbitrary.
 
 ## Warning
