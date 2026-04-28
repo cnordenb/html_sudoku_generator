@@ -1,4 +1,4 @@
-# Sudoku in HTML with JavaScript and CSS
+# Sudoku Generator in HTML with JavaScript and CSS
 
 ## Usage
 - Go to deployment page [https://cnordenb.github.io/html_sudoku/](https://cnordenb.github.io/html_sudoku/)
