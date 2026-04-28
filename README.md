@@ -1,7 +1,7 @@
 # Sudoku Generator in HTML with JavaScript and CSS
 
 ## Usage
-- Go to deployment page [https://cnordenb.github.io/html_sudoku/](https://cnordenb.github.io/html_sudoku/)
+- Go to deployment page [https://cnordenb.github.io/html_sudoku_generator/](https://cnordenb.github.io/html_sudoku_generator/)
 - Adjust difficulty using slider
 - Click Reset to generate new Sudoku
 - Click an empty cell to enter a value using your keyboard
