@@ -4,6 +4,7 @@
 - Go to deployment page [https://cnordenb.github.io/html_sudoku/](https://cnordenb.github.io/html_sudoku/)
 - Adjust difficulty using slider
 - Click Reset to generate new Sudoku
+- Click an empty cell to enter a value using your keyboard
 - Click Validate to show correctness of numbers
 - Click Reveal to show solution in separate grid
 
