@@ -95,19 +95,20 @@
   <input type="range" id="difficulty" min="1" max="64" value="40">
   <span id="diffValue"></span>
   <br><br>
-  <button onclick="generatePuzzle()">Reset</button>
-  <button onclick="validateSolution()">Validate</button>
-  <button onclick="revealSolution()">Reveal</button>
+
 </div>
 
 <div class="boards">
   <div class="board-panel">
-    <div class="board-title">Current Board</div>
+    <div class="board-title">Progress</div>
     <div id="board"></div>
+    <button onclick="generatePuzzle()">Generate</button>
+    <button onclick="validateSolution()">Validate</button>
   </div>
   <div class="board-panel">
-    <div class="board-title">Revealed Board</div>
+    <div class="board-title">Solution</div>
     <div id="revealBoard"></div>
+    <button id="revealButton" onclick="revealSolution()">Reveal</button>
   </div>
 </div>
 
@@ -119,6 +120,7 @@ let puzzle = [];
 let sudokuCache = [];
 let loadingOverlayShownAt = 0;
 let generationWorker = null;
+let solutionRevealed = false;
 
 // Inline sample of sudoku17.txt for local file:// testing
 const SUDOKU_SAMPLE = [
@@ -546,12 +548,14 @@ function everyBlockHasEmpty(puzzle) {
 async function generatePuzzle() {
   createBoard();
   createRevealBoard();
+  solutionRevealed = false;
+  document.getElementById("revealButton").innerText = "Reveal";
 
   await sudokuCacheReady;
 
   const targetEmptyCells = Number(document.getElementById("difficulty").value);
   const targetClues = 81 - targetEmptyCells;
-  const shouldUseLoadingOverlay =  targetClues <= 25;
+  const shouldUseLoadingOverlay =  targetClues <= 30;
   let loadingTimer = null;
 
   if (shouldUseLoadingOverlay) {
@@ -632,13 +636,26 @@ function validateSolution() {
 }
 
 function revealSolution() {
+  const revealButton = document.getElementById("revealButton");
   const revealCells = document.querySelectorAll("#revealBoard input");
+
+  if (solutionRevealed) {
+    for (let i = 0; i < 81; i++) {
+      revealCells[i].value = "";
+    }
+    solutionRevealed = false;
+    revealButton.innerText = "Reveal";
+    return;
+  }
 
   for (let i = 0; i < 81; i++) {
     let r = Math.floor(i / 9);
     let c = i % 9;
     revealCells[i].value = solution[r][c];
   }
+
+  solutionRevealed = true;
+  revealButton.innerText = "Hide";
 }
 
 // Init
