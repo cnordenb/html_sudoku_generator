@@ -20,3 +20,6 @@
 
 ## Warning
 - These sudokus are computer-generated and are not handcrafted. Read Nobuhiko Kanamoto's [plea](https://www.nikoli.co.jp/en/puzzles/sudoku/why_hand_made/) as to why you should only play sudokus hand made by humans.
+
+## Acknowledgement
+- Huge thanks to [Gordon Royle](https://research-repository.uwa.edu.au/en/persons/gordon-royle/) for his dataset of 49 151 unique solution 17-clue Sudokus. It is available in this repository as [sudoku17.txt](https://github.com/cnordenb/html_sudoku_generator/blob/main/sudoku17.txt)
