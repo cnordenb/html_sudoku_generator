@@ -243,7 +243,7 @@ function solve(board) {
   }
   return true;
 }
-<!-- TODO: add every block needs a clue checkbox -->
+
 
 
 function findEmptyCell(board) {
@@ -550,8 +550,13 @@ async function generatePuzzle() {
   await sudokuCacheReady;
 
   const targetEmptyCells = Number(document.getElementById("difficulty").value);
-  const generationStart = performance.now();
-  let loadingTimer = setTimeout(showLoadingOverlay, 100);
+  const targetClues = 81 - targetEmptyCells;
+  const shouldUseLoadingOverlay =  targetClues <= 25;
+  let loadingTimer = null;
+
+  if (shouldUseLoadingOverlay) {
+    loadingTimer = setTimeout(showLoadingOverlay, 100);
+  }
 
   if (generationWorker) {
     generationWorker.terminate();
@@ -572,9 +577,11 @@ async function generatePuzzle() {
     });
   });
 
-  clearTimeout(loadingTimer);
+  if (loadingTimer !== null) {
+    clearTimeout(loadingTimer);
+  }
 
-  if (loadingOverlayShownAt > 0) {
+  if (shouldUseLoadingOverlay && loadingOverlayShownAt > 0) {
     const visibleFor = performance.now() - loadingOverlayShownAt;
     if (visibleFor < 500) {
       await wait(500 - visibleFor);
